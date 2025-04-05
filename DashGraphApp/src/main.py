@@ -1,6 +1,6 @@
 import sys
 import dash
-import dash_bootstrap_components as dbc
+import argparse
 from pathlib import Path
 
 from DashGraphApp.src import graph
@@ -55,7 +55,10 @@ def update_graph(sel_root, sel_leaf):
 
 
 def main():
-    return app.run()
+    parser = argparse.ArgumentParser("dash-server", description="Runs a web-server to expose some interesting graphs")
+    parser.add_argument("-p", "--port", default=8050, action="store", help="Port used by webserver")
+    args = parser.parse_args()
+    return app.run(port=args.port)
 
 
 if __name__ == "__main__":
